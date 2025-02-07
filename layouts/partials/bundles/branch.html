@@ -49,7 +49,7 @@
                     {{- $flowlinesSrc := "https://raw.githubusercontent.com/foxihd/hugo-et-hd/master/static/svg/flowlines/" }}
                     {{- $src := cond $images $images (printf "%s%d.svg" $flowlinesSrc ( index (seq $flowlinesCount | shuffle) 1 )) }}
                     <li  {{ if $cover }}style="background-image:url({{ $src }});"{{ end }}>
-                        <a href="/en/{{.Page.Title}}" aria-label="{{ i18n $taxonomy 1 }}:{{ .Page.Title }}">
+                        <a href="/en/{{.Page.Title | lower}}" aria-label="{{ i18n $taxonomy 1 }}:{{ .Page.Title }}">
                             <span>{{ humanize .Page.Title | title }}</span>
                         </a>
                     </li>
