@@ -28,12 +28,12 @@
     max-height: 1024px;
 }
 
-.hero > * {
+/* .hero > * {
     width: 50%;
-}
+} */
 
 .hero img {
-    margin-left: auto;
+    /* margin-left: auto; */
     padding: 2rem;
     max-width: 100%;
     max-height: calc(var(--vbody) - 14.8rem - 1rem - 2ex);

@@ -200,8 +200,8 @@
             {{ partial "taxonomies.html" (dict "taxonomy" $entry "class" "carousel__viewport" "cover" true) }}
         </div> -->
         <div id="list-categories" class="carousel">
-            <header class="section-title">{{ i18n $entry }}</header>
             {{ partial "taxonomies.html" (dict "taxonomy" $entry "class" "carousel__viewport" "cover" true) }}
+            <header class="section-title">{{ i18n $entry }}</header>
         </div>
     {{- end }}
 {{- end }}
