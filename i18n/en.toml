@@ -4,6 +4,9 @@
     other = "This page intentionally redirect"
 [404ReturnHome]
     other = "back to homepage"
+[aboutme]
+    one = "About Me"
+    other = "About Me"
 [accessibility]
     other = "Accessibility"
 [accessTime]

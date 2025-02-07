@@ -28,8 +28,9 @@
                     </div>
                 </div>
             {{- else }}
-                {{ partial "listing.html" (dict "entry" "series") }}
-                {{ partial "listing.html" (dict "entry" "categories") }}
+                <!-- {{ partial "listing.html" (dict "entry" "series") }}
+                {{ partial "listing.html" (dict "entry" "categories") }} -->
+                {{ partial "listing.html" (dict "entry" "aboutme") }}
             {{- end }}
             {{- with .Content }}
                 {{ partial "hero.html" $ }}

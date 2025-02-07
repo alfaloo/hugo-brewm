@@ -20,7 +20,7 @@
 ul.carousel__viewport > li > a > span::before,
 ul.carousel__viewport > li > a > span::after,
 ul.carousel__viewport > li > a > span,
-#list-categories a:hover::after,
+list-categories# a:hover::after,
 .letterine > i {
     -webkit-transition: var(--flashGuard);
        -moz-transition: var(--flashGuard);

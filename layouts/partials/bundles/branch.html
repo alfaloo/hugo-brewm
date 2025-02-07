@@ -5,7 +5,7 @@
     {{- $class := .class }}
     {{- $cover := .cover }}
     {{- $limit := .limit }}
-    {{- with index site.Taxonomies $taxonomy }}
+    <!-- {{- with index site.Taxonomies $taxonomy }}
         <ul class="{{ $class }}" role="presentation">
             {{- $index := 0 }}
             {{ range . -}}
@@ -35,6 +35,49 @@
                 {{- end }}
             {{- end }}
         </ul>
+    {{- end }} -->
+
+    {{- with index site.Taxonomies $taxonomy }}
+        {{- if eq $taxonomy "aboutme" }}
+        <ul class="{{ $class }}" role="presentation">
+            {{- $index := 0 }}
+            {{ range . -}}
+                {{- $index = add $index 1 }}
+                {{- if or (le $index $limit) (not $limit) -}}
+                    {{- $images := or .Page.Params.cover .Page.Params.images }}
+                    {{- $flowlinesCount := or 42 site.Params.Feed.FlowlinesLimit }}
+                    {{- $flowlinesSrc := "https://raw.githubusercontent.com/foxihd/hugo-et-hd/master/static/svg/flowlines/" }}
+                    {{- $src := cond $images $images (printf "%s%d.svg" $flowlinesSrc ( index (seq $flowlinesCount | shuffle) 1 )) }}
+                    <li  {{ if $cover }}style="background-image:url({{ $src }});"{{ end }}>
+                        <a href="/en/{{.Page.Title}}" aria-label="{{ i18n $taxonomy 1 }}:{{ .Page.Title }}">
+                            <span>{{ humanize .Page.Title | title }}</span>
+                        </a>
+                    </li>
+                {{- end }}
+            {{- end }}
+        </ul>
+        {{- else }}
+            <ul class="{{ $class }}" role="presentation">
+                {{- $index := 0 }}
+                {{ range . -}}
+                    {{- $index = add $index 1 }}
+                    {{- if or (le $index $limit) (not $limit) -}}
+                        {{- $images := or .Page.Params.cover .Page.Params.images }}
+                        {{- $flowlinesCount := or 42 site.Params.Feed.FlowlinesLimit }}
+                        {{- $flowlinesSrc := "https://raw.githubusercontent.com/foxihd/hugo-et-hd/master/static/svg/flowlines/" }}
+                        {{- $src := cond $images $images (printf "%s%d.svg" $flowlinesSrc ( index (seq $flowlinesCount | shuffle) 1 )) }}
+                        <li  {{ if $cover }}style="background-image:url({{ $src }});"{{ end }}>
+                            <a href="{{ .Page.Permalink }}"
+                                aria-label="{{ i18n $taxonomy 1 }}:{{ .Page.Title }}"
+                                data-post-counter="{{ printf "%d" .Count }}"
+                                >
+                                <span>{{ humanize .Page.Title | title }}</span>
+                            </a>
+                        </li>
+                    {{- end }}
+                {{- end }}
+            </ul>
+        {{- end }}
     {{- end }}
 {{- end }}
 
@@ -152,7 +195,11 @@
     {{ "<!-- listing.html -->" | safeHTML }}
     {{- $entry := .entry }}
     {{- if index site.Taxonomies $entry }}
-        <div id="list-{{ $entry }}" class="carousel">
+        <!-- <div id="list-{{ $entry }}" class="carousel">
+            <header class="section-title">{{ i18n $entry }}</header>
+            {{ partial "taxonomies.html" (dict "taxonomy" $entry "class" "carousel__viewport" "cover" true) }}
+        </div> -->
+        <div id="list-categories" class="carousel">
             <header class="section-title">{{ i18n $entry }}</header>
             {{ partial "taxonomies.html" (dict "taxonomy" $entry "class" "carousel__viewport" "cover" true) }}
         </div>
