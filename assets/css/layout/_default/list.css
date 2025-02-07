@@ -28,7 +28,8 @@ hr.ldots::after {
 #list-series,
 #list-categories {
     display: flex;
-    /* flex-direction: row-reverse; */
+    flex-direction: row-reverse;
+    justify-content: space-between;
     flex-wrap: nowrap;
     align-items: flex-start;
 }
