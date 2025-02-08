@@ -270,12 +270,12 @@ summary:focus > .t {
     display: none !important;
 }
 
-ul.inline::before,
+/* ul.inline::before,
 ul.delimiter::after,
 ul.delimiter li:first-child:before,
 ul.delimiter li:nth-last-child(2)::after {
     content: '\a0';
-}
+} */
 
 #page .date-has-label > .doc-publish-date::after,
 ul.delimiter li:after {
