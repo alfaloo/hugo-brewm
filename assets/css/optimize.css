@@ -178,6 +178,7 @@ figure,
 #main-footer-secondary,
 #menu-footer {
     margin: 0;
+    line-height: 1.4;
 }
 
 ul.rounded,
