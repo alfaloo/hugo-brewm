@@ -157,9 +157,9 @@ ul.carousel__viewport > li > a > span::after {
     font-size: var(--normalsize);
 }
 
-.carousel__viewport__slide__content p {
+/* .carousel__viewport__slide__content p {
     max-width: var(--canonic);
-}
+} */
 
 .carousel__viewport__slide__content .footnotes p {
     max-width: unset;

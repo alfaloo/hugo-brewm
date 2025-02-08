@@ -95,7 +95,7 @@
     {{ "<!-- menu.html -->" | safeHTML }}
     <menu role="presentation">
         <li>
-            <a id="print-button" class="hide" href="javascript:window.print()" title="{{ i18n "print" }}" role="button" aria-label="{{ i18n "print" }}">
+            <a id="print-button" href="javascript:window.print()" title="{{ i18n "print" }}" role="button" aria-label="{{ i18n "print" }}">
                 <span class="t" role="tooltip">{{ i18n "print" }}</span>
             </a>
         </li>
@@ -105,7 +105,7 @@
             </a>
         </li>
         <li>
-            <a id="copyPermalink" class="hide" href="javascript:navigator.clipboard.writeText(window.location.href)" title="{{ i18n "copy" }}" role="button" aria-label="{{ i18n "copy" }}">
+            <a id="copyPermalink" href="javascript:navigator.clipboard.writeText(window.location.href)" title="{{ i18n "copy" }}" role="button" aria-label="{{ i18n "copy" }}">
                 <span class="t" role="tooltip">{{ i18n "copy" }}</span>
             </a>
         </li>
