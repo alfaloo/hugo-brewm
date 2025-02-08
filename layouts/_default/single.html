@@ -38,10 +38,8 @@
         {{- else }}
             data-pagefind-body
         {{- end }}>
-        {{/*
-
-            frontmatter */}}
-        <header class="textwidth" aria-labelledby="title">
+        {{/* frontmatter */}}
+        <!-- <header class="textwidth" aria-labelledby="title">
             {{ partial "page/title.html" . }}
             <div id="doc-author" class="textsw author">
                 {{- $author := cond .Params.author .Params.author site.Params.Author.name }}
@@ -92,7 +90,64 @@
                 {{- end }}
             </div>
             {{ partial "page/timestamp.html" . }}
-        </header>
+        </header> -->
+
+        {{ if eq .Params.type "post" }}
+            <header class="textwidth" aria-labelledby="title">
+                {{ partial "page/title.html" . }}
+                <div id="doc-author" class="textsw author">
+                    {{- $author := cond .Params.author .Params.author site.Params.Author.name }}
+                    {{- $authors := .GetTerms "author" }}
+                    {{- $instance := or .Params.Fediverse.Host .Params.Fediverse.Instance }}
+                    {{- $user := or .Params.Fediverse.User .Params.Fediverse.Username }}
+                    {{- $post := or .Params.Fediverse.post .Params.Fediverse.link }}
+                    {{- /*
+
+                        Fediverse avatar  */}}
+                    {{- if and $instance $user $post (not (gt (len $authors) 1)) }}
+                        {{- $api := print "https://" $instance "/api/v1/statuses/" $post  }}
+                        {{- $data := "" }}
+                        {{- with resources.GetRemote $api }}
+                            {{- $data = transform.Unmarshal . }}
+                            <a id="avatar" href="{{ $data.account.url }}" aria-label="{{ $data.account.display_name }}">
+                                <img src="{{ $data.account.avatar }}" alt="{{ $data.account.display_name }}" class="avatar"/>
+                            </a>
+                        {{- end }}
+                    {{- end }}
+                    {{/*
+
+                        name of author(s) */}}
+                    {{- if $authors }}
+                        {{- if eq (len $authors) 1 }}
+                            {{- range $authors }}
+                                <a href="{{ .RelPermalink }}"
+                                    {{- if and $instance $user }}
+                                        class="has-aria-label"
+                                        aria-label="{{ print "@" $user "@" $instance}}"
+                                    {{- end }}>
+                                    {{- .LinkTitle -}}
+                                </a>
+                            {{- end }}
+                        {{- else }}
+                            {{ partial "terms.html" (dict "taxonomy" "author" "class" "delimiter" "page" .) }}
+                        {{- end }}
+                    {{- else if $author -}}
+                        {{- if and $instance $user }}
+                        <a href="{{ printf "https://%s/@%s" $instance $user }}"
+                            class="has-aria-label"
+                            aria-label="{{ print "@" $user "@" $instance}}">
+                            {{- $author -}}
+                        </a>
+                        {{- else }}
+                        <span>{{ $author }}</span>
+                        {{- end }}
+                    {{- end }}
+                </div>
+                {{ partial "page/timestamp.html" . }}
+            </header>
+        {{ end }}
+
+
         {{- with .Params.toc }}
             {{ partial "nav.html" (dict "navID" "TableOfContents" "page" $) }}
         {{- end }}
@@ -108,7 +163,7 @@
             {{ partial "post/tagged.html" . }}
         </footer>
     </article>
-    <hr class="hide" style="margin: 1in 0;">
+    <!-- <hr class="hide" style="margin: 1in 0;">
     <div id="contentinfo" class="pagewidth" role="contentinfo" data-pagefind-ignore="all">
         {{ partial "post/related.html" . }}
         {{ partial "post/history.html" . }}
@@ -116,7 +171,22 @@
         {{ partial "post/contribute.html" . }}
         {{ partial "nav.html" (dict "navID" "share" "page" .) }}
         {{ partial "fediverse.html" . }}
-    </div>
+    </div> -->
+
+
+    {{ if eq .Params.type "post" }}
+        <hr class="hide" style="margin: 1in 0;">
+        <div id="contentinfo" class="pagewidth" role="contentinfo" data-pagefind-ignore="all">
+            {{ partial "post/related.html" . }}
+            {{ partial "post/history.html" . }}
+            {{ partial "post/colophon.html" . }}
+            {{ partial "post/contribute.html" . }}
+            {{ partial "nav.html" (dict "navID" "share" "page" .) }}
+            {{ partial "fediverse.html" . }}
+        </div>
+    {{ end }}
+
+
 {{- end }}
 
 {{- define "post" }}

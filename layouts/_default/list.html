@@ -164,6 +164,8 @@
                     {{ partial "listing.html" (dict "entry" "series") }}
                 {{- else if eq .Data.Singular "author" }}
                     {{ partial "listing.html" (dict "entry" "author") }}
+                {{- else if eq .Data.Singular "aboutme" }}
+                    {{ partial "listing.html" (dict "entry" "aboutme") }}
                 {{- end }}
             </section>
             {{- end }}

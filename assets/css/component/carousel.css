@@ -75,7 +75,8 @@ ul.carousel__viewport > li {
     border-radius: 1ex;
     background-size: cover;
     width: 16rem;
-    height: 12.8rem;
+    height: 12rem;
+    flex: 1 1 12rem;
 }
 
 ul.carousel__viewport > li > a {
@@ -223,6 +224,8 @@ ul.carousel__viewport > li > a > span::after {
 #list-series ul.carousel__viewport,
 #list-categories ul.carousel__viewport,
 #list-author ul.carousel__viewport {
+    display: flex;
+    flex-wrap: wrap;
     scrollbar-width: thin;
 }
 

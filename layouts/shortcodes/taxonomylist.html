@@ -1,0 +1,4 @@
+{{- $taxonomy := .Get "taxonomy" }}  <!-- Gets the input parameter from Markdown -->
+{{- if $taxonomy }}
+    {{- partial "listing.html" (dict "entry" $taxonomy) }}
+{{- end }}
