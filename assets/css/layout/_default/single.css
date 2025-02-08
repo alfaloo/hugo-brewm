@@ -146,9 +146,9 @@ header time {
     max-width: none;
 }
 
-#content p:not(:first-of-type) {
+/* #content p:not(:first-of-type) {
     text-indent: var(--indent);
-}
+} */
 
 #content p img {
     width: calc(100% - var(--indent));
