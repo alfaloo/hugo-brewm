@@ -118,7 +118,7 @@ header time {
 #main-article audio,
 #main-article section > p {
     margin: 0.618pc 0;
-    /* width: var(--golden-ratio); */
+    width: var(--golden-ratio);
 }
 
 /* article mainmatter */
